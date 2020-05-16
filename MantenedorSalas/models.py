@@ -4,16 +4,16 @@ from django.db import models
 
 class Sala(models.Model):
     nombre_sala = models.CharField(max_length=30)
-    piso = models.IntegerField()
-    descripcion = models.TextField(max_length=500)
-    estado = models.BooleanField()
+    piso_sala = models.IntegerField()
+    descripcion_sala = models.TextField(max_length=500)
+    estado_sala = models.BooleanField()
 
     def __str__(self):
       return self.nombre_sala
 
 
 class Horario(models.Model):
-    fecha = models.DateTimeField()
+    fecha_horario = models.DateTimeField()
     hora_inicio = models.DateTimeField()
     hora_termino = models.DateTimeField()
 
