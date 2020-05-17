@@ -18,7 +18,7 @@ class Horario(models.Model):
     hora_termino = models.DateTimeField()
 
     def __str__(self):
-      return self.fecha
+      return self.hora_inicio
 
 
 
