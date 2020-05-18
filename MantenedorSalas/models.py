@@ -7,12 +7,14 @@ class Sala(models.Model):
     piso_sala = models.IntegerField()
     descripcion_sala = models.TextField(max_length=500)
     estado_sala = models.BooleanField()
+    horarios =  models.ForeignKey('Horario',on_delete=models.CASCADE)
 
     def __str__(self):
       return self.nombre_sala
 
 
 class Horario(models.Model):
+
     fecha_horario = models.DateTimeField()
     hora_inicio = models.DateTimeField()
     hora_termino = models.DateTimeField()

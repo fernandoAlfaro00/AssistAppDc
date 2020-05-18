@@ -5,8 +5,9 @@ def listado_salas(request):
 
     # pylint: disable=maybe-no-member
     salas  = Sala.objects.all()
-
-    datos = {'salas':salas}
+    horarios = Horario.objects.all()
+    datos = {'salas':salas , 'horarios':horarios}
 
     return render(request, 'app/listviewSalas.html', datos)
     
+
