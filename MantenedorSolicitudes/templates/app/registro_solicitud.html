@@ -17,15 +17,9 @@
     <div class="container">
         <form method='POST'>
             {% csrf_token %}
-            <div class="form-row">
-                <div class="form-group col-md-12">
-                    <label for="inputName">Nombre Completo </label>
-                    <input type="text" class="form-control" name="nombre" id="inputName" placeholder="">
-                </div>
-                <div class="form-group col-md-12">
-                    <label for="inputRun">Run</label>
-                    <input type="text" class="form-control" namme="" id="inputRun" placeholder="18.2421.887-8">
-                </div>
+            {{ form.as_p }}
+
+            <!-- <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="inputSede">Sede</label>
                     <input type="text" class="form-control" id="inputSede">
@@ -45,7 +39,7 @@
             <div class="form-group">
                 <label for="exampleFormControlTextarea1">Descripcion</label>
                 <textarea class="form-control" id="exampleFormControlTextarea1" name="descripcion" rows="3"></textarea>
-            </div>
+            </div> -->
             <button type="submit" class="btn btn-primary">Solicitar</button>
         </form>
 

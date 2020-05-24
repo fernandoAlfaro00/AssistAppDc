@@ -1,26 +1,42 @@
 from django.db import models
+from django.core.exceptions import ValidationError
 
-# Create your models here.
 
 class Sala(models.Model):
     nombre_sala = models.CharField(max_length=30)
     piso_sala = models.IntegerField()
     descripcion_sala = models.TextField(max_length=500)
     estado_sala = models.BooleanField()
-    #horarios =  models.ForeignKey('Horario',on_delete=models.CASCADE)
+    sede =   models.CharField(max_length=30,blank=False)
+    edificio  =  models.CharField(max_length=30 ,blank=False)
+    disponibilidad = models.BooleanField(default=True, blank=True)   
 
     def __str__(self):
       return self.nombre_sala
 
 
 class Horario(models.Model):
+    #problemas con las horas buscar las forma de que la horas asignada a esa sala sea unicas en ese dias
+    """posible solucion:
+       tener dos campos de tipo DateTimeField y dividir las hora del las fechas en el template,
+       y depues crear una campos de tipo fecha y otros dos de tipo Time.
+      
+    """
 
-    fecha_horario = models.DateTimeField()
-    hora_inicio = models.DateTimeField()
-    hora_termino = models.DateTimeField()
-
+    fecha  =   models.DateField()
+    hora_inicio = models.TimeField()
+    hora_termino = models.TimeField()
+    sala = models.ForeignKey(Sala,on_delete=models.CASCADE,
+                            null=False,blank=False,related_name='horarios')
+    
     def __str__(self):
-      return self.hora_inicio
+      return 'fecha : {}- desde {} y hasta {}'.format(self.fecha,self.hora_inicio, self.hora_termino)
+      
+    def clean_horario(self):
+
+      if self.hora_inicio >  self.hora_termino :
+
+        return ValidationError('La hora de termino debe ser mayor a la de inicio')
 
 
 
