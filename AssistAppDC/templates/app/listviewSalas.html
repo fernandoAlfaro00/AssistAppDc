@@ -20,6 +20,8 @@
                 <th>piso</th>
                 <th>descripcion</th>
                 <th>estado</th>
+                <th>horarios</th>
+
             </tr>
         </thead>
         <tbody>
@@ -36,7 +38,24 @@
                     <div>Ocupado</div>
                     {% endif %}
                 </td>
+                <td>
+                    {% for horario in horarios %}
+
+                    {% if horario.sala_id == sala.id %}
+                    <div>{{ horario.fecha}}-{{ horario.hora_inicio}}-{{ horario.hora_termino}}
+                        <a href="RegistroSolicitud">Solicitar</a>
+                    </div>
+
+                    {% endif %}
+
+                    {% endfor %}
+
+                </td>
+
+
+
             </tr>
+
             {% endfor %}
         </tbody>
 

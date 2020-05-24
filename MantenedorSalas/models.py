@@ -23,7 +23,8 @@ class Horario(models.Model):
       
     """
 
-    fecha  =   models.DateField()
+
+    fecha = models.DateField()
     hora_inicio = models.TimeField()
     hora_termino = models.TimeField()
     sala = models.ForeignKey(Sala,on_delete=models.CASCADE,
@@ -34,10 +35,23 @@ class Horario(models.Model):
       
     def clean_horario(self):
 
-      if self.hora_inicio >  self.hora_termino :
+      if self.hora_inicio >=  self.hora_termino :
 
         return ValidationError('La hora de termino debe ser mayor a la de inicio')
 
+    
+    
+    def general_codigo(self,sala,fecha,inicio,termino):
+        codigo = ''
+        codigo_bruto  = '{}{}{}{}'.format(sala,fecha,inicio,termino) 
 
+        for i in codigo_bruto :
+
+            if i.isdigit():
+
+                codigo = codigo + i 
+
+        return codigo
+    
 
 

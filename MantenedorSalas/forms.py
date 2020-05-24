@@ -11,18 +11,12 @@ class HorarioForm(forms.ModelForm):
         class Meta:
             
             model = Horario
-            fields  = [ 'hora_inicio' , 'hora_termino' ,'sala' ]
+            fields  = [ 'sala','fecha','hora_inicio' , 'hora_termino' ]
             widgets = {
-           
-            'hora_inicio': forms.SplitDateTimeWidget(date_attrs={'type':'date' ,},
-                                                    time_attrs={'type':'time' ,}),
-            'hora_termino': forms.SplitDateTimeWidget(date_attrs={'type':'date' ,},
-                                                    time_attrs={'type':'time' ,})   
-                                                    ,
-                      
-
+                'fecha' : forms.DateInput(attrs={'type':'date'}),
+                'hora_inicio': forms.TimeInput(attrs={'type':'time'}) ,
+                'hora_termino' : forms.TimeInput(attrs={'type':'time'}) ,
         }
-        
         
        
        

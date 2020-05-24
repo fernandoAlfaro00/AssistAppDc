@@ -1,10 +1,12 @@
 from django.shortcuts import render
 from .models import Solicitud 
-from .forms import FormularioSolicitud
+from MantenedorSalas.models import Horario
+from .forms import FormularioSolicitud , FormularioRepuesta
 
 
 
 def ingreso_solicitud(request):
+    
     datos  = {'form': FormularioSolicitud()}
     
     if request.method == 'POST' :
@@ -15,26 +17,40 @@ def ingreso_solicitud(request):
             
             solicitud = solicitud_form.save(commit=False)
             
-            #solicitud.codigo = solicitud.general_codigo(solicitud.id_sala.id,solicitud.fecha,solicitud.hora_inicio,solicitud.hora_termino)
-            
-            if comparar_fecha_hora(solicitud):
-                print("no se puede solicitar esta sala a esa hora ya que en uso")
-            else:    
-                solicitud.save()
+           
+            solicitud.save()
         
     
 
     return render(request , 'app/registro_solicitud.html', datos)
 
 
-def comparar_fecha_hora(horario):
-    
-    if Solicitud.objects.filter(id_sala=horario.id_sala,fecha=horario.fecha,hora_inicio__range=(horario.hora_inicio, horario.hora_termino),hora_termino__range=(horario.hora_inicio, horario.hora_termino)).exists():
-
-        return True 
-    
 
 def estado_solicitud(request):
+    pass    
+
+def respuesta_Solicitud(request,id):
+
+    solicitud = Solicitud.objects.get(id=id)
+    form = FormularioRepuesta(instance=solicitud)
+
+    if request.method == 'POST':
+
+        form  = FormularioRepuesta(request.POST,instance=solicitud)
+
+        if form.is_valid():
+            
+           
+            solicitud = form.save(commit=False)
+            solicitud.estado_solicitud = True
+            solicitud.save()
+
+            form = FormularioRepuesta(instance=solicitud)
+
+    return render(request , 'app/respuesta_solicitud.html',{'form':form})
+
+
+def listado_solicitudes(request):
     solicitudes =  Solicitud.objects.all()
 
     datos = {'solicitudes':solicitudes}
