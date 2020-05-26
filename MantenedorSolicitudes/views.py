@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from .models import Solicitud 
-from MantenedorSalas.models import Horario
+from MantenedorSalas.models import Horario ,Sala
+from MantenedorUsuarios.models import User
 from .forms import FormularioSolicitud , FormularioRepuesta
 
 
@@ -9,8 +10,12 @@ def ingreso_solicitud(request):
     
     datos  = {'form': FormularioSolicitud()}
     
+    
+    usuario = request.GET.get('usuario')
+    print('usuario',usuario)
     if request.method == 'POST' :
 
+        
         solicitud_form  =  FormularioSolicitud(request.POST)
 
         if  solicitud_form.is_valid():

@@ -43,7 +43,7 @@
 
                     {% if horario.sala_id == sala.id %}
                     <div>{{ horario.fecha}}-{{ horario.hora_inicio}}-{{ horario.hora_termino}}
-                        <a href="RegistroSolicitud">Solicitar</a>
+                        <a href="{% url 'registroSolicitud' %}?usuario={{ sala.id }}">Solicitar</a>
                     </div>
 
                     {% endif %}

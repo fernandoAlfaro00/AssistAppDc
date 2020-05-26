@@ -2,12 +2,13 @@ from django.shortcuts import render
 from .models import Sala , Horario
 from .forms import HorarioForm
 from MantenedorSolicitudes.models import Solicitud
+
 def listado_salas(request):
-    
+    # pylint: disable=maybe-no-member
     horarios = Horario.objects.all()
     # pylint: disable=maybe-no-member
     salas  = Sala.objects.all()
-    #horarios = Horario.objects.all()
+   
     datos = {'salas':salas,'horarios':horarios}
 
     return render(request, 'app/listviewSalas.html', datos)
@@ -31,6 +32,9 @@ def ingreso_horario(request):
                 print("no se puede solicitar esta sala a esa hora ya que en uso")
             else:    
                 horario.save()
+        
+   
+
 
     return render(request,'app/ingreso_horario.html',{'horario':horario_form} ) 
 
