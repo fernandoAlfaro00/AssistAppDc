@@ -16,13 +16,6 @@ class Sala(models.Model):
 
 
 class Horario(models.Model):
-    #problemas con las horas buscar las forma de que la horas asignada a esa sala sea unicas en ese dias
-    """posible solucion:
-       tener dos campos de tipo DateTimeField y dividir las hora del las fechas en el template,
-       y depues crear una campos de tipo fecha y otros dos de tipo Time.
-      
-    """
-
 
     fecha = models.DateField()
     hora_inicio = models.TimeField()

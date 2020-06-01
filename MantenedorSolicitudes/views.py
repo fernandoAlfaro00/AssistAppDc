@@ -12,9 +12,6 @@ def ingreso_solicitud(request,id_sala,id_horario):
     sala = get_object_or_404(Sala, id=id_sala)
     horario = get_object_or_404(Horario, id= id_horario)
     datos  = {'form': FormularioSolicitud() , 'sala' : sala ,'horario':horario}
-    
-
-    
 
     #   print(user)
     if request.method == 'POST' :
@@ -26,11 +23,9 @@ def ingreso_solicitud(request,id_sala,id_horario):
             
             solicitud = solicitud_form.save(commit=False)
             
-
             solicitud.save()
         
     
-
     return render(request , 'app/registro_solicitud.html', datos)
 
 
@@ -48,8 +43,7 @@ def respuesta_Solicitud(request,id):
         form  = FormularioRepuesta(request.POST,instance=solicitud)
 
         if form.is_valid():
-            
-           
+                   
             solicitud = form.save(commit=False)
             solicitud.estado_solicitud = True
             solicitud.save()

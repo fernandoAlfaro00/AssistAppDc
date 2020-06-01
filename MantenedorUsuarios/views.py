@@ -34,8 +34,4 @@ def registro_usuario(request):
             datos['perfil_form'] =  perfil_form
             datos['usuario_form'] = usuario_form
 
-            
-
-        
-
     return render(request,'app/registro_usuario.html',datos)

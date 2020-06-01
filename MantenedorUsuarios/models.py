@@ -9,3 +9,4 @@ class Perfil(models.Model):
     rut_usuario=models.CharField(unique=True,max_length=15)
     telefono  =  models.PositiveIntegerField(default=0, validators=[MaxValueValidator(900**3)])
     fecha_nacimiento = models.DateField(null=False , blank=False  , default='2001-10-01')
+
