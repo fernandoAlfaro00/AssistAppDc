@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block title %}Listado Solicitudes {% endblock %}
+{% block content %}
+    <p>Listado Solicitudes</p>
+    <ul>
+        {% for solicitud in solicitudes %}
+        <li>{{ solicitud.usuario}} {{ solicitud.sala }} {{ solicitud.horario }} {{ solicitud.descripcion }} <a href="RespuestaSolicitud/{{solicitud.id}}">Responder</a> </li> 
+        {% endfor %}
+    </ul>
+{% endblock %}

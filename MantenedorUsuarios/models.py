@@ -1,12 +1,12 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.core.validators import  MinValueValidator , MaxValueValidator
 
 # Create your models here.
-class Usuario(models.Model):
+class Perfil(models.Model):
+
     username = models.ForeignKey(User,on_delete=models.CASCADE)
-    rut_usuario=models.CharField(unique=True,max_length=20)
-    nombre_usuario=models.TextField()
-    tipo_usuario=models.CharField(max_length=40)
-    correo_ususario=models.EmailField()
-    def __str__(self):
-      return self.nombre_usuario
+    rut_usuario=models.CharField(unique=True,max_length=15)
+    telefono  =  models.PositiveIntegerField(default=0, validators=[MaxValueValidator(900**3)])
+    fecha_nacimiento = models.DateField(null=False , blank=False  , default='2001-10-01')
+

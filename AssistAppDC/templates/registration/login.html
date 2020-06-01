@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block title %}Ingresar Horario {% endblock %}
+{% block content %}
+    <div class="content mt-5">
+        <div class="row justify-content-center">
+            <div class="col-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h2>Iniciar Session</h2>
+                        <form method="post" novalidate>
+                            {% csrf_token %}
+                            {{ form.as_p }}
+                            <button type="submit" class="btn btn-primary" href="{% url 'login' %}">Iniciar</button>
+                            <a href="{% url 'password_reset' %}" class="btn btn-link">Olvidaste Tu Contraseña?</a>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endblock %}
