@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render , get_object_or_404
 from .models import Solicitud 
 from MantenedorSalas.models import Horario ,Sala
 from MantenedorUsuarios.models import User
@@ -6,13 +6,17 @@ from .forms import FormularioSolicitud , FormularioRepuesta
 
 
 
-def ingreso_solicitud(request):
+def ingreso_solicitud(request,id_sala,id_horario):
     
-    datos  = {'form': FormularioSolicitud()}
+    #user =  get_object_or_404(User, username  =request.user)
+    sala = get_object_or_404(Sala, id=id_sala)
+    horario = get_object_or_404(Horario, id= id_horario)
+    datos  = {'form': FormularioSolicitud() , 'sala' : sala ,'horario':horario}
     
+
     
-    usuario = request.GET.get('usuario')
-    print('usuario',usuario)
+
+    #   print(user)
     if request.method == 'POST' :
 
         
@@ -22,7 +26,7 @@ def ingreso_solicitud(request):
             
             solicitud = solicitud_form.save(commit=False)
             
-           
+
             solicitud.save()
         
     
@@ -61,3 +65,5 @@ def listado_solicitudes(request):
     datos = {'solicitudes':solicitudes}
 
     return render(request,'app/listado_solicitudes.html',datos)
+
+

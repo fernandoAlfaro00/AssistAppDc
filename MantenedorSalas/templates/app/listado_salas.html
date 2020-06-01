@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% block title %}Ingresar Horario {% endblock %}
+{% block content %}
+
+    <table clase='table '>
+        <thead class="thead-dark">
+            <tr>
+                <th>#</th>
+                <th>nombre</th>
+                <th>piso</th>
+                <th>descripcion</th>
+                <th>estado</th>
+                <th>horarios</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            {% for sala in salas %}
+            <tr>
+                <td>{{ sala.id }}</td>
+                <td>{{sala.nombre_sala}}</td>
+                <td>{{sala.piso_sala}}</td>
+                <td>{{sala.descripcion_sala}}</td>
+                <td>
+                    {% if sala.estado_sala %}
+                    <div>Disponible</div>
+                    {% else %}
+                    <div>Ocupado</div>
+                    {% endif %}
+                </td>
+                <td>
+                    {% for horario in horarios %}
+ 
+                    {% if horario.sala_id == sala.id %}
+                    <div>{{ horario.fecha}}-{{ horario.hora_inicio}}-{{ horario.hora_termino}}
+                        <a  href="{% url 'registroSolicitud' id_sala=sala.id  id_horario=horario.id %}">Solicitar</a>
+                    </div>
+
+                    {% endif %}
+
+                    {% endfor %}
+
+                </td>
+
+
+
+            </tr>
+
+            {% endfor %}
+        </tbody>
+
+
+    </table>
+            {% endblock %}

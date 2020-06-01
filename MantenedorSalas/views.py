@@ -11,7 +11,7 @@ def listado_salas(request):
    
     datos = {'salas':salas,'horarios':horarios}
 
-    return render(request, 'app/listviewSalas.html', datos)
+    return render(request, 'app/listado_salas.html', datos)
 
 
         

@@ -4,6 +4,11 @@ from django.contrib.auth import authenticate
 from .models import Perfil
 from .forms import  FormularioUsuario , FormularioPerfil
 
+
+def home(request):
+
+    return  render(request, 'app/home.html', {})
+
 def registro_usuario(request):
     datos = {'perfil_form': FormularioPerfil(),'usuario_form':FormularioUsuario()}
 
