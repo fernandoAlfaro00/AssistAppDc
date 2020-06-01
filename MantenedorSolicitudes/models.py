@@ -3,7 +3,7 @@ from django.core.exceptions import ValidationError
 from MantenedorSalas.models import Sala , Horario
 from django.contrib.auth.models import User
 
-<<<<<<< HEAD
+
 class   Solicitud(models.Model):
     
     usuario = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -18,6 +18,4 @@ class   Solicitud(models.Model):
 
  
     
-=======
-# Create your models her
->>>>>>> master
+
