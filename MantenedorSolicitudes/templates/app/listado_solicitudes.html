@@ -1,7 +1,10 @@
 {% extends 'base.html' %}
 {% block title %}Listado Solicitudes {% endblock %}
 {% block content %}
-    <h1>Listado Solicitudes</h1>
+<div class="d-flex">
+
+    <div >
+        <h1>Listado Solicitudes</h1>
     <table class="table table-bordered">
         <thead >
             <th>usuario</th>
@@ -27,9 +30,25 @@
     
         
     </table>
+    </div>
+    <div class="mx-3 mt-5">
+        <div class="card">
+            <div class="card-body d-flex flex-column align-content-around">
+              <h5>Filtros:</h5>
+              <button type="button" class="btn btn-primary mb-3">Solicitudes Reciente</button>
+              <button type="button" class="btn btn-primary mb-3">Solicitudes Sin Responder</button>
+              <button type="button" class="btn btn-primary mb-3">Solicitudes Rechazadas</button>
+            </div>
+          </div>
+          
+    </div>
+</div>
+
+    
     <div class="modal" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             
     </div>
+    
 {% endblock %}
 
 {% block extrajs %}

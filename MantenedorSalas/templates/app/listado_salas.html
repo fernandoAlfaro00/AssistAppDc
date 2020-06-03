@@ -25,19 +25,22 @@
                     {% if sala.estado_sala %}
                     <div>Disponible</div>
                     {% else %}
-                    <div>Ocupado</div>
+                    <div>Ocupada</div>
                     {% endif %}
                 </td>
                 <td>
                     {% for horario in horarios %}
- 
+
                     {% if horario.sala_id == sala.id %}
-                    <div>{{ horario.fecha}}-{{ horario.hora_inicio}}-{{ horario.hora_termino}}
+                    
+                    <div>
+                        
+                        {{ horario.fecha}}-{{ horario.hora_inicio}}-{{ horario.hora_termino}}
                         <a  href="{% url 'registroSolicitud' id_sala=sala.id  id_horario=horario.id %}">Solicitar</a>
                     </div>
 
                     {% endif %}
-
+            
                     {% endfor %}
 
                 </td>
@@ -45,7 +48,7 @@
 
 
             </tr>
-
+            
             {% endfor %}
         </tbody>
 

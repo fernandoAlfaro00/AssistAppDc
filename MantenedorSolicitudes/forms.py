@@ -16,4 +16,7 @@ class FormularioRepuesta(forms.ModelForm):
     class Meta:
         
         model= Solicitud
-        fields = ['usuario','respuesta']
+        fields = ['respuesta']
+        widgets = {
+            'respuesta': forms.Textarea(attrs={'class' :'form-control'}),
+        }    

@@ -60,3 +60,7 @@ def listado_solicitudes(request):
     return render(request,'app/listado_solicitudes.html',datos)
 
 
+def  listado_notificaciones(request):
+
+
+    return render(request,'app/listado_notificaciones.html',{})
