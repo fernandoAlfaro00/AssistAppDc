@@ -13,10 +13,11 @@ class HorarioForm(forms.ModelForm):
             model = Horario
             fields  = [ 'sala','fecha','hora_inicio' , 'hora_termino' ]
             widgets = {
-                'fecha' : forms.DateInput(attrs={'type':'date'}),
-                'hora_inicio': forms.TimeInput(attrs={'type':'time'}) ,
-                'hora_termino' : forms.TimeInput(attrs={'type':'time'}) ,
-        }
+                'fecha' : forms.DateInput(attrs={'type':'date' , 'class': 'form-control'}),
+                'hora_inicio': forms.TimeInput(attrs={'type':'time', 'class': 'form-control'}) ,
+                'hora_termino' : forms.TimeInput(attrs={'type':'time' , 'class': 'form-control'}) ,
+            }
+            
         
        
        

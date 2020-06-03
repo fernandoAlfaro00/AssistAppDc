@@ -1,43 +1,49 @@
 {% extends 'base.html' %}
 {% block title %}Ingresar Horario {% endblock %}
 {% block content %}
-        <form method='POST' >
-            {% csrf_token %}   
-        
+
+
+  
+
+            <form method='POST' >
+                {% csrf_token %}   
             
-
-            <div class="form-row">
-                <div class="form-group col-md-6">
-                    <label for="inputnombre">Solicitante</label>
-                    <input type="text" class="form-control" id="inputnombre" value="{{user}}"> 
+                
+    
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="inputnombre">Solicitante</label>
+                        <input type="text" class="form-control" id="inputnombre" value="{{user}}"> 
+                    </div>
                 </div>
-            </div>
-            <div class="form-row">
-                <div class="form-group col-md-6">
-                    <label for="inputnombre">Sala</label>
-                    <input type="text" class="form-control" id="inputnombre" value="{{sala.id}}"> 
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="inputnombre">Sala</label>
+                        <input type="text" class="form-control" id="inputnombre" value="{{sala.id}}"> 
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="inputSede">Sede</label>
+                        <input type="text" class="form-control" id="inputSede">
+                    </div>
                 </div>
-                <div class="form-group col-md-6">
-                    <label for="inputSede">Sede</label>
-                    <input type="text" class="form-control" id="inputSede">
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="inputCity">Hora Inicio</label>
+                        <input type="time" name='horario_inicio' value="{{horario.hora_inicio}}" class="form-control" id="input">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="inputCity">Hora Termino</label>
+                        <input type="time" class="form-control" name='horario_termino' id="inputCity" value="{{horario.hora_termino}}">
+                    </div>
                 </div>
-            </div>
-            <div class="form-row">
-                <div class="form-group col-md-6">
-                    <label for="inputCity">Hora Inicio</label>
-                    <input type="time" name='horario_inicio' value="{{horario.hora_inicio}}" class="form-control" id="input">
+    
+                <div class="form-group">
+                    <label for="exampleFormControlTextarea1">Descripcion</label>
+                    <textarea class="form-control" id="exampleFormControlTextarea1" name="descripcion" rows="3"></textarea>
                 </div>
-                <div class="form-group col-md-6">
-                    <label for="inputCity">Hora Termino</label>
-                    <input type="time" class="form-control" name='horario_termino' id="inputCity" value="{{horario.hora_termino}}">
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label for="exampleFormControlTextarea1">Descripcion</label>
-                <textarea class="form-control" id="exampleFormControlTextarea1" name="descripcion" rows="3"></textarea>
-            </div>
-            <button type="submit" class="btn btn-primary">Solicitar</button>
-        </form>
+                <button type="submit" class="btn btn-primary">Solicitar</button>
+            </form> 
+       
+  
 
 {% endblock %}

@@ -16,4 +16,4 @@ class FormularioRepuesta(forms.ModelForm):
     class Meta:
         
         model= Solicitud
-        fields = ['usuario', 'sala','descripcion', 'horario','respuesta']
+        fields = ['usuario','respuesta']

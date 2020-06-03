@@ -25,6 +25,7 @@ urlpatterns = [
     path('salas/', include('MantenedorSalas.urls')),
     
     path('cuenta/', include('django.contrib.auth.urls')),
+    path('', include('pwa.urls')),
 ]
 
 

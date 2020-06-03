@@ -8,7 +8,7 @@ from .forms import FormularioSolicitud , FormularioRepuesta
 
 def ingreso_solicitud(request,id_sala,id_horario):
     
-    #user =  get_object_or_404(User, username  =request.user)
+    #user =  get_object_or_404(User, username=request.user)
     sala = get_object_or_404(Sala, id=id_sala)
     horario = get_object_or_404(Horario, id= id_horario)
     datos  = {'form': FormularioSolicitud() , 'sala' : sala ,'horario':horario}
@@ -19,10 +19,9 @@ def ingreso_solicitud(request,id_sala,id_horario):
         
         solicitud_form  =  FormularioSolicitud(request.POST)
 
+   
         if  solicitud_form.is_valid():
-            
             solicitud = solicitud_form.save(commit=False)
-            
             solicitud.save()
         
     

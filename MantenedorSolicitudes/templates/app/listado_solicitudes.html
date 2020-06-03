@@ -1,10 +1,44 @@
 {% extends 'base.html' %}
 {% block title %}Listado Solicitudes {% endblock %}
 {% block content %}
-    <p>Listado Solicitudes</p>
-    <ul>
+    <h1>Listado Solicitudes</h1>
+    <table class="table table-bordered">
+        <thead >
+            <th>usuario</th>
+            <th>sala</th>
+            <th>horario</th>
+            <th>descripcion</th>
+            <th>--</th>
+        </thead>
+        <tbody>
         {% for solicitud in solicitudes %}
-        <li>{{ solicitud.usuario}} {{ solicitud.sala }} {{ solicitud.horario }} {{ solicitud.descripcion }} <a href="RespuestaSolicitud/{{solicitud.id}}">Responder</a> </li> 
+            <tr>
+                <td>{{ solicitud.usuario}}</td>
+                <td>{{ solicitud.sala }}</td>
+                <td>{{ solicitud.horario }}</td>
+                <td>{{ solicitud.descripcion }} </td>
+                <td><button  type="button" data-toggle="modal" data-target="#exampleModal" class="btn btn-outline-primary btn-sm" onclick="abrir_modal_respuesta('{% url 'respuestaSolicitud'     id=solicitud.id %}')">Responder</button></td>
+            </tr>
+        
         {% endfor %}
-    </ul>
+            
+        </tbody>
+
+    
+        
+    </table>
+    <div class="modal" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            
+    </div>
 {% endblock %}
+
+{% block extrajs %}
+<script type="text/javascript">
+    var $ = jQuery.noConflict();
+    function abrir_modal_respuesta(url){
+    $('#exampleModal').load(url,function(){
+        $(this).modal('show');
+    });
+    }
+</script>
+{% endblock extrajs %}

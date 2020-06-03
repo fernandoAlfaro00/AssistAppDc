@@ -1,3 +1,4 @@
+{% load  static %}
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary ">
 
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -15,11 +16,12 @@
         <ul class="navbar-nav mr-auto">
         </ul>
     </div>
-
-    {% if user.authenticated %}
-    <a class="navbar-brand" href="#">Cerrar seccion</a>
+    <a href="#"> <img src="{% static 'icon/notification.svg' %}" width="32" height="32"></a>
+    {% if user.is_authenticated %}
+    <a class="btn btn-outline-light" href="{% url 'logout' %}">Cerrar seccion</a>
     {% else %}
-    <a class="navbar-brand" href="{% url 'login' %}">Iniciar seccion</a>
+    {% comment %} navbar-brand {% endcomment %}
+    <a class="btn btn-outline-light" href="{% url 'login' %}">Iniciar seccion</a>
     {% endif %}    
 
     
