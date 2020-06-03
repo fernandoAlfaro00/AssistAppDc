@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'MantenedorSalas',
     'MantenedorUsuarios',
     'MantenedorSolicitudes',
+    'pwa',
 ]
 
 MIDDLEWARE = [
@@ -125,3 +126,8 @@ USE_TZ = True
 STATIC_URL = '/static/'
 #STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
+
+PWA_SERVICE_WORKER_PATH = os.path.join(BASE_DIR, 'serviceworker.js')
+
+LOGIN_REDIRECT_URL =  'home'
+LOGOUT_REDIRECT_URL = 'home'
