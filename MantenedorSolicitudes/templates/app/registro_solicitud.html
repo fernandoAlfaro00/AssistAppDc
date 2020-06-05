@@ -8,18 +8,18 @@
             <form method='POST' >
                 {% csrf_token %}   
             
-                
-    
+                <input type="hidden" name="horario" value="{{horario.id}}">
+
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <label for="inputnombre">Solicitante</label>
-                        <input type="text" class="form-control" id="inputnombre" value="{{user}}"> 
+                        <input type="text"  name="usuario" class="form-control" id="inputnombre" value="{{user.id}}"> 
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <label for="inputnombre">Sala</label>
-                        <input type="text" class="form-control" id="inputnombre" value="{{sala.id}}"> 
+                        <input type="text"  name="sala" class="form-control" id="inputnombre" value="{{sala.id}}"> 
                     </div>
                     <div class="form-group col-md-6">
                         <label for="inputSede">Sede</label>

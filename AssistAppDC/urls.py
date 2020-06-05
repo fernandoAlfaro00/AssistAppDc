@@ -23,7 +23,6 @@ urlpatterns = [
 
     path('solicitudes/', include('MantenedorSolicitudes.urls')),
     path('salas/', include('MantenedorSalas.urls')),
-    
     path('cuenta/', include('django.contrib.auth.urls')),
     path('', include('pwa.urls')),
 ]

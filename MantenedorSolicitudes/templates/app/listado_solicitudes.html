@@ -3,7 +3,7 @@
 {% block content %}
 <div class="d-flex">
 
-    <div >
+    <div class="w-auto p-3">
         <h1>Listado Solicitudes</h1>
     <table class="table table-bordered">
         <thead >
@@ -11,6 +11,7 @@
             <th>sala</th>
             <th>horario</th>
             <th>descripcion</th>
+            <th>Respuesta</th>
             <th>--</th>
         </thead>
         <tbody>
@@ -20,7 +21,10 @@
                 <td>{{ solicitud.sala }}</td>
                 <td>{{ solicitud.horario }}</td>
                 <td>{{ solicitud.descripcion }} </td>
-                <td><button  type="button" data-toggle="modal" data-target="#exampleModal" class="btn btn-outline-primary btn-sm" onclick="abrir_modal_respuesta('{% url 'respuestaSolicitud'     id=solicitud.id %}')">Responder</button></td>
+                <td>{{ solicitud.respuesta }}</td>
+                <td>
+                    <button  type="button" data-toggle="modal" data-target="#exampleModal" class="btn btn-outline-primary btn-sm" onclick="abrir_modal_respuesta('{% url 'respuestaSolicitud' pk=solicitud.id %}')">Responder</button>
+                </td>
             </tr>
         
         {% endfor %}
@@ -45,7 +49,7 @@
 </div>
 
     
-    <div class="modal" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal" id="exampleModal"  data-backdrop="static"  tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             
     </div>
     
@@ -56,7 +60,8 @@
     var $ = jQuery.noConflict();
     function abrir_modal_respuesta(url){
     $('#exampleModal').load(url,function(){
-        $(this).modal('show');
+        
+        $(this).modal('show');  
     });
     }
 </script>
