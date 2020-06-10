@@ -21,7 +21,9 @@
                             <h2>Iniciar Sesión</h2>
                             <form method="post" novalidate>
                                 {% csrf_token %}
+                               
                                 {{ form|crispy}}
+                                
                                 <button type="submit" class="btn btn-primary" href="{% url 'login' %}">Iniciar</button>
                                 <div>
                                 <a href="{% url 'password_reset' %}" class="btn btn-link">Olvidaste Tu Contraseña?</a>

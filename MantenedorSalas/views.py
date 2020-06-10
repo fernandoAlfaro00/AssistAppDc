@@ -30,7 +30,7 @@ def ingreso_horario(request):
             
             
             if comparar_fecha_hora(horario):
-                print("no se puede solicitar esta sala a esa hora ya que en uso")
+                raise ValueError("no se puede solicitar esta sala a esa hora ya que en uso")
             else:    
                 horario.save()
         
@@ -40,5 +40,6 @@ def ingreso_horario(request):
 def comparar_fecha_hora(horario):
     
     if Horario.objects.filter(sala=horario.sala,fecha=horario.fecha,hora_inicio__range=(horario.hora_inicio, horario.hora_termino),hora_termino__range=(horario.hora_inicio, horario.hora_termino)).exists():
-
-        return True 
+        print('creo que no pasa por aka.')
+        raise  ValueError("no puede solicitar esta sala , sala no disponible.")
+        

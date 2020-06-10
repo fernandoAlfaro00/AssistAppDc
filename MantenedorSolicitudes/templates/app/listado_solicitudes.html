@@ -2,7 +2,8 @@
 {% block title %}Listado Solicitudes {% endblock %}
 {% block content %}
 <div class="d-flex">
-
+    
+        
     <div class="w-auto p-3">
         <h1>Listado Solicitudes</h1>
     <table class="table table-bordered">
@@ -15,6 +16,7 @@
             <th>--</th>
         </thead>
         <tbody>
+
         {% for solicitud in solicitudes %}
             <tr>
                 <td>{{ solicitud.usuario}}</td>
@@ -27,8 +29,9 @@
                 </td>
             </tr>
         
-        {% endfor %}
-            
+        {% endfor %} 
+        
+
         </tbody>
 
     

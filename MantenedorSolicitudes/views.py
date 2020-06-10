@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from django.views.generic.edit import UpdateView , CreateView
+from django.contrib  import messages
 from .models import Solicitud
 from django.urls import reverse_lazy
 from django.http import HttpResponseRedirect
@@ -22,10 +23,20 @@ def ingreso_solicitud(request, id_sala, id_horario):
         solicitud_form = FormularioSolicitud(request.POST)
 
 
-        if solicitud_form.is_valid():
-            solicitud = solicitud_form.save(commit=False)
-            solicitud.save()
+    
+        try:
+            if solicitud_form.is_valid():
+                solicitud = solicitud_form.save(commit=False)
+                solicitud.save()
+                messages.add_message(request, messages.SUCCESS ,  'la Solicitud se a creado correctamente')
+        
+        except (ValueError, TypeError):
 
+            print ('aqui deberia dar una puta excepcion y no se por que no se lanza la excepcion.')
+    
+        datos['form']  = solicitud_form
+
+        
     return render(request, 'app/registro_solicitud.html', datos)
 
 
@@ -48,15 +59,19 @@ def respuesta_Solicitud(request, id):
             solicitud.estado_solicitud = True
             solicitud.save()
 
+
             form = FormularioRepuesta(instance=solicitud)
 
     return render(request, 'app/respuesta_solicitud.html', {'form': form})
 
 
 def listado_solicitudes(request):
+    
     solicitudes = Solicitud.objects.all()
+    
+    datos = {'solicitudes': solicitudes }
 
-    datos = {'solicitudes': solicitudes}
+
 
     return render(request, 'app/listado_solicitudes.html', datos)
 

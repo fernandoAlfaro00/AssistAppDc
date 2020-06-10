@@ -7,13 +7,13 @@
 
             <form method='POST' >
                 {% csrf_token %}   
-            
+                
                 <input type="hidden" name="horario" value="{{horario.id}}">
 
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <label for="inputnombre">Solicitante</label>
-                        <input type="text"  name="usuario" class="form-control" id="inputnombre" value="{{user.id}}"> 
+                        <input type="text"  name="usuario" class="form-control" id="id_usuario" value="{{user.id}}"> 
                     </div>
                 </div>
                 <div class="form-row">
@@ -37,13 +37,34 @@
                     </div>
                 </div>
     
-                <div class="form-group">
+                <div class="form-group errorlist">
                     <label for="exampleFormControlTextarea1">Descripcion</label>
-                    <textarea class="form-control" id="exampleFormControlTextarea1" name="descripcion" rows="3"></textarea>
-                </div>
+                    <textarea class="form-control  was-validated" id="id_descripcion" name="descripcion" rows="3"></textarea>
+                  
+                </div>  
                 <button type="submit" class="btn btn-primary">Solicitar</button>
+               
+                {% if form.errors %}
+                
+                <script type="text/javascript">
+                    {% for field in form %}
+                        var field_input = document.getElementById("{{ field.auto_id }}");
+                        if (field_input) {
+                            field_input.classList.add("is-{% if field.errors %}in{% endif %}valid");
+                            console.log('{{ field.errors }}')
+                        }
+                    {% endfor %}
+                </script>
+                
+                {% endif %}
             </form> 
-       
-  
+
+            {% if messages %}
+                <ul class="messages">
+                    {% for message in messages %}
+                        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %} 
 
 {% endblock %}
