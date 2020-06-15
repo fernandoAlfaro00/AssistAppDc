@@ -41,7 +41,9 @@ INSTALLED_APPS = [
     'MantenedorUsuarios',
     'MantenedorSolicitudes',
     'pwa',
+     'crispy_forms',
 ]
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -130,4 +132,4 @@ STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
 PWA_SERVICE_WORKER_PATH = os.path.join(BASE_DIR, 'serviceworker.js')
 
 LOGIN_REDIRECT_URL =  'home'
-LOGOUT_REDIRECT_URL = 'home'
+LOGOUT_REDIRECT_URL = 'login'

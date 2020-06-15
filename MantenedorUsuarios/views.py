@@ -25,8 +25,11 @@ def registro_usuario(request):
             
             perfil.username =  usuario_form.save()
             
+            usuario = usuario_form.save()
             
-            usuario_form.save()
+            usuario.set_password(usuario.password)
+
+            usuario.save()
 
             perfil.save()
 

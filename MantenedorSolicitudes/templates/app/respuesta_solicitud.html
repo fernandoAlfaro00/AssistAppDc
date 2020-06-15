@@ -11,7 +11,7 @@
             <span aria-hidden="true">×</span>
           </button>
         </div>
-        <form method='POST' action="{% url 'respuestaSolicitud' id=1 %}" >
+        <form method='POST' action="{% url 'respuestaSolicitud' object.id %}" >
         <div class="modal-body">
             
                 {% csrf_token %}   

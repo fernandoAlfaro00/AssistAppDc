@@ -1,12 +1,13 @@
+{% load static %}
 <div class="bg-light border-right" id="sidebar-wrapper">
     <div class="list-group list-group-flush">
-        <a href="{% url 'home' %}" class="list-group-item list-group-item-action bg-light">Inicio</a>
-        <a href="#" class="list-group-item list-group-item-action bg-light">Perfil</a>
-        <a href="{% url 'listadoNotificaciones' %}" class="list-group-item list-group-item-action bg-light">Notificaciones</a>
-        <a href="{% url 'listadoSalas' %}" class="list-group-item list-group-item-action bg-light">Solicitar Sala</a>
-        <a href="{% url 'listadoSalas' %}" class="list-group-item list-group-item-action bg-light">Salas Disponibles</a>
-        <a href="{% url 'listadoSolicitudes' %}" class="list-group-item list-group-item-action bg-light">Ver Solicitudes</a>
-        <a href="{% url 'horario' %}" class="list-group-item list-group-item-action bg-light">Ingresar Horario</a>
+        <a href="{% url 'home' %}" class="list-group-item list-group-item-action bg-light"> <i class="fas fa-house-user fa-2x"> Inicio</i> </a>
+        <a href="#" class="list-group-item list-group-item-action bg-light"> <i class="far fa-address-card fa-2x"> Perfil</i> </a>
+        <a href="{% url 'listadoNotificaciones' %}" class="list-group-item list-group-item-action bg-light"><i class="far fa-bell fa-2x"> Notificacion  </i></a>
+        <a href="{% url 'listadoSalas' %}" class="list-group-item list-group-item-action bg-light"> <i class="fas fa-chalkboard fa-2x"> Solicitar Sala</i></a>
+        <a href="{% url 'listadoSalas' %}" class="list-group-item list-group-item-action bg-light"> <i class="fas fa-chalkboard fa-2x"> Salas Disponibles</i></a>
+        <a href="{% url 'listadoSolicitudes' %}" class="list-group-item list-group-item-action bg-light"> <i class="far fa-clipboard fa-2x" > Solicitudes</i> </a>
+        <a href="{% url 'horario' %}" class="list-group-item list-group-item-action bg-light"><i class="far fa-calendar-plus fa-2x"> Ingresar   Horario</i></a>
         
     </div>
 </div>
