@@ -25,10 +25,10 @@ def ingreso_horario(request):
         horario_form  =  HorarioForm(request.POST)
     
         if  horario_form.is_valid():
-
+            print("llegas aca")
+            
             horario = horario_form.save(commit=False)
-            
-            
+        
             if comparar_fecha_hora(horario):
                 raise ValueError("no se puede solicitar esta sala a esa hora ya que en uso")
             else:    

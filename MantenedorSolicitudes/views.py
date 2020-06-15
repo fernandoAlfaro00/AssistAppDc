@@ -69,9 +69,14 @@ def listado_solicitudes(request):
     
     solicitudes = Solicitud.objects.all()
     
-    datos = {'solicitudes': solicitudes }
-
-
+    
+    if request.GET.get('valor_filtro'):
+        solicitudes = Solicitud.objects.filter(estado_solicitud=request.GET.get('valor_filtro'))
+        
+        print('filtro',request.GET.get('valor_filtro'))
+        
+    datos = {'solicitudes': solicitudes }   
+    
 
     return render(request, 'app/listado_solicitudes.html', datos)
 

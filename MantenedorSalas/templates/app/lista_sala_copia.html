@@ -27,13 +27,13 @@
                     <div>Disponible</div>
                     {% endif %}
                 </td>
-                <td d-flex>
-                    <ul class="list-group">
+                <td>
+                    <ul>
                     {% for horario in horarios %}
                     {% if horario.sala_id == sala.id %}
                     
                     
-                    <li class="">
+                    <li>
                         {{ horario.fecha}}-{{ horario.hora_inicio}}-{{ horario.hora_termino}}
                         <a  href="{% url 'registroSolicitud' id_sala=sala.id  id_horario=horario.id %}">Solicitar</a>
                     </li>
