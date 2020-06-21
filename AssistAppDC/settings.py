@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'MantenedorSolicitudes',
     'pwa',
      'crispy_forms',
+     'fcm_django',
 ]
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
@@ -133,3 +134,16 @@ PWA_SERVICE_WORKER_PATH = os.path.join(BASE_DIR, 'serviceworker.js')
 
 LOGIN_REDIRECT_URL =  'home'
 LOGOUT_REDIRECT_URL = 'login'
+
+FCM_DJANGO_SETTINGS = {
+        "APP_VERBOSE_NAME": "AssistAppDC",
+         # default: _('FCM Django')
+        "FCM_SERVER_KEY": "AAAA72KPz48:APA91bEBywhTReoR8RAWVFnbZpOKYYatvR9dmlJpdsJry9A2Y2k2fy_8ueuxf7cFp_G-VuKIEIb8RIn2CBefK1TrPo6WVp_9e9pgifpAcTe7uvluLk_KMwP4s9n3giT6Fqf40ZuLkZEj",
+         # true if you want to have only one active device per registered user at a time
+         # default: False
+        "ONE_DEVICE_PER_USER": False,
+         # devices to which notifications cannot be sent,
+         # are deleted upon receiving error response from FCM
+         # default: False
+        "DELETE_INACTIVE_DEVICES": True,
+}

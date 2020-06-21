@@ -16,7 +16,11 @@ class FormularioRepuesta(forms.ModelForm):
     class Meta:
         
         model= Solicitud
-        fields = ['respuesta', 'estado_solicitud']
+        fields = ['usuario','respuesta', 'estado_solicitud']
         widgets = {
-            'respuesta': forms.Textarea(attrs={'class' :'form-control'}),
+            'respuesta': forms.Textarea(attrs={'class' :'form-control',}),
+            'usuario': forms.HiddenInput(),
+
+            
+
         }    

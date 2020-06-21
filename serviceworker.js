@@ -55,11 +55,11 @@ let messaging  = firebase.messaging();
 
 messaging.setBackgroundMessageHandler(function(payload) {
 
-  let title = "titulo de la notificacion";
+  let title = payload.notification.title;
 
   let options = {
-      body: 'es el mensaje',
-      icon: './static/icon/notication.svg'
+      body: payload.notification.body,
+      icon: payload.notification.icon
   }
 
   self.Registration.showNotification(title ,options);

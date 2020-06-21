@@ -62,6 +62,22 @@ let messaging  = firebase.messaging();
       })
       .then( function(token){
           console.log(token);
+          fetch('salas/guardar-token/',{
+            method:'post',
+            headers:{
+              'Content-Type':'Aplicaction/json',
+              'Accept': 'Aplication/json'
+            },
+            body:JSON.stringify({
+              'token':token
+            })
+          })
+          .then(function(resultado){
+            console.log('se a guardado el token correctamente');
+          })
+          .catch(function(e){
+            console.log('no se a guardado el token')
+          })
       })
       .catch(function(){
           console.log("el usuario no ha aceptado")
@@ -74,11 +90,13 @@ let messaging  = firebase.messaging();
 
     messaging.onMessage(function(payload) {
     
-    let title = "titulo de la notificacion"
+    
+
+    let title =  payload.notification.title;
 
     let options = {
-        body: 'es el mensaje',
-        icon: './static/icon/notication.svg'
+        body:   payload.notification.body,
+        icon: payload.notification.icon
     }
 
 

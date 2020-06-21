@@ -3,10 +3,10 @@ from django.contrib.auth.models import User , Group
 from django.contrib.auth import authenticate
 from .models import Perfil
 from .forms import  FormularioUsuario , FormularioPerfil
-
+from fcm_django.models import FCMDevice
 
 def home(request):
-
+    
     return  render(request, 'app/home.html', {})
 
 def registro_usuario(request):
