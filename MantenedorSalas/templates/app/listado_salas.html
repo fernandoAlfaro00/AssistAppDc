@@ -1,57 +1,63 @@
 {% extends 'base.html' %}
 {% block title %}Ingresar Horario {% endblock %}
 {% block content %}
-    <table class="table table-borderless">
-        <thead >
-            <tr>
-                <th>#</th>
-                <th>nombre</th>
-                <th>piso</th>
-                <th>descripcion</th>
-                <th>estado</th>
-                <th>horarios</th>
 
-            </tr>
-        </thead>
-        <tbody>
-            {% for sala in salas %}
-            <tr>
-                <td>{{ sala.id }}</td>
-                <td>{{sala.nombre_sala}}</td>
-                <td>{{sala.piso_sala}}</td>
-                <td>{{sala.descripcion_sala}}</td>
-                <td>
-                    {% if sala.disponibilidad %}
-                    <div>Disponible</div>
-                    {% else %}
-                    <div>Disponible</div>
-                    {% endif %}
-                </td>
-                <td d-flex>
-                    <ul class="list-group">
-                    {% for horario in horarios %}
-                    {% if horario.sala_id == sala.id %}
+<!-- tabla -->
+<div class="container">
+    
+    <div class="col-md-12">
+        <div class="card">
+            <table class="table">
+                <thead class="card-header card-header-icon card-header-warning" > 
+                  <tr>
                     
-                    
-                    <li class="">
-                        {{ horario.fecha}}-{{ horario.hora_inicio}}-{{ horario.hora_termino}}
-                        <a  href="{% url 'registroSolicitud' id_sala=sala.id  id_horario=horario.id %}">Solicitar</a>
-                    </li>
-
-                    {% endif %}
-            
+                    <th scope="col">nombre</th>
+                    <th scope="col">piso</th>
+                    <th scope="col">descripcion</th>
+                    <th scope="col">estado</th>
+                    <th scope="col">horarios</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    {% for sala in salas %}
+                    <tr>
+                        
+                        <td>{{sala.nombre_sala}}</td>
+                        <td>{{sala.piso_sala}}</td>
+                        <td>{{sala.descripcion_sala}}</td>
+                        <td>
+                            {% if sala.disponibilidad %}
+                            <div>Disponible</div>
+                            {% else %}
+                            <div>Disponible</div>
+                            {% endif %}
+                        </td>
+                        <td d-flex>
+                            <div class="dropdown">
+                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                  Desplegar Horario
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    {% for horario in horarios %}
+                                    {% if horario.sala_id == sala.id %}
+                                    <li class="">
+                                        {{ horario.fecha}}-{{ horario.hora_inicio}}-{{ horario.hora_termino}}
+                                        <a  class="btn btn-warning btn-round h-25 w-25" href="{% url 'registroSolicitud' id_sala=sala.id  id_horario=horario.id %}">Solicitar</a>
+                                    </li>
+                                  {% endif %}
+                                  {% endfor %}
+                                </div>
+                              </div>
+                        </td>
+                    </tr>
                     {% endfor %}
-                </ul>
-                </td>
+                </tbody>
+              </table>
+        </div> 
+         
+    </div>
+    
+</div>
 
 
-
-            </tr>
-            
-            {% endfor %}
-        </tbody>
-
-
-    </table>
-  
-            {% endblock %}
+{% endblock %}

@@ -1,0 +1,101 @@
+{% extends 'base.html' %}
+{% block title %}Listado Solicitudes {% endblock %}
+{% block content %}
+<div class="w-auto p-3">
+        <h1>Listado Solicitudes</h1>
+    </div>
+<div class="d-flex">
+    
+    
+<div class="table-responsive">
+    <table class="table table-bordered">
+        <thead >
+            <th>usuario</th>
+            <th>sala</th>
+            <th>horario</th>
+            <th>descripcion</th>
+            <th>Respuesta</th>
+            <th>---</th>
+        </thead>
+        <tbody>
+        {% if  solicitudes %}
+
+            {% for solicitud in solicitudes %}
+                <tr>    
+                    <td>{{ solicitud.usuario}}</td>
+                    <td>{{ solicitud.sala }}</td>
+                    <td>{{ solicitud.horario }}</td>
+                    <td >{{ solicitud.descripcion }} </td>
+                    <td  class="text-break" > {{ solicitud.respuesta }}</td>
+                    <td>
+                        <button  type="button" data-toggle="modal" data-target="#exampleModal" class="btn btn-outline-primary btn-sm" onclick="abrir_modal_respuesta('{% url 'respuestaSolicitud' pk=solicitud.id %}')">Responder</button>
+                    </td>
+                </tr>
+            
+            {% endfor %} 
+        
+        {% else %}
+            <tr>
+                <td colspan="6" class="text-center"><h4>Sin Resultado</h4></td>
+            </tr>
+        {% endif %}
+
+            
+
+        </tbody>
+
+    
+        
+    </table>
+    </div>
+
+    
+
+    <div class="mx-3 mt-5">
+        <div class="card">
+            <div class="card-body d-flex flex-column align-content-around">
+              <h5>Filtros:</h5>
+              <button type="button"  data-id="recientes" class="btn btn-primary mb-3">Solicitudes Reciente</button>
+              <button type="button" data-id="e" class="btn btn-primary mb-3">Solicitudes Sin Responder</button>
+              <button type="button" data-id="r" class="btn btn-primary mb-3">Solicitudes Rechazadas</button>
+            </div>
+          </div>
+          
+    </div>
+</div>
+
+    
+    <div class="modal" id="exampleModal"  data-backdrop="static"  tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            
+    </div>
+    
+{% endblock %}
+
+{% block extrajs %}
+<script type="text/javascript">
+    var $ = jQuery.noConflict();
+    function abrir_modal_respuesta(url){
+    $('#exampleModal').load(url,function(){
+        
+        $(this).modal('show');  
+    });
+    }
+    //parte del los filtros
+    $('.btn-primary').click(function(){
+            let valor =  $(this).data("id");
+            $.ajax({
+                url:'{% url "listadoSolicitudes" %}',
+                type : 'get',
+                data:{"valor_filtro" : valor },
+                dataType: 'json',
+                success: function(response) {
+                            alert(response);
+                },
+                error: function(response) {
+                        alert("oh no!");
+                }
+            });
+        }
+    );
+</script>
+{% endblock extrajs %}
