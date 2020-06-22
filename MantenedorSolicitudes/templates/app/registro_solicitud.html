@@ -2,92 +2,102 @@
 {% block title %}Ingresar Horario {% endblock %}
 {% block content %}
 
+<div class="container">
+<div class="col-md-12">
+    <div class="card">
+        <form method='POST' class="mt-3">
+            {% csrf_token %}
+            {% if form.horario.errors %}
+            <div class="alert alert-danger" role="alert">
+                <strong>Oh!, Ocurrido el siguiente problema: </strong>
 
-  
+                {{ form.horario.errors }}
+            </div>
+            {% endif %}
 
-            <form method='POST'class="mt-3" >
-                {% csrf_token %} 
-                {% if form.horario.errors %}  
-                <div class="alert alert-danger" role="alert">
-                    <strong>Oh!, Ocurrido el siguiente problema: </strong>
-                   
-                        {{ form.horario.errors }}
-                </div>   
-                {% endif %}
+            <input type="hidden" name="horario" value="{{horario.id}}">
 
-                <input type="hidden" name="horario" value="{{horario.id}}">
-
-                <div class="form-row">
-                    <div class="form-group col-md-6">
-                        <label for="inputnombre">Solicitante</label>
-                        <input type="hidden"  name="usuario"  value="{{user.id}}">    
-                        <input readonly type="text" class="form-control" id="di_usuario" value="{{user.first_name}} {{user.last_name}}">    
-                        <div class="invalid-feedback">
-                            {{ form.usuario.errors }}
-                        </div>
-                    
-                    </div>
-                </div>
-                <div class="form-row">
-                    <div class="form-group col-md-6">
-                        <label for="inputnombre">Sala</label>
-                        <input type="hidden"  name="sala"  value="{{sala.id}}"> 
-
-                        <input type="text" readonly  class="form-control" id="inputnombre" value="{{sala.nombre_sala}}"> 
-                    </div>
-                    <div class="form-group col-md-6">
-                        <label for="inputSede">Sede</label>
-                        <input type="text" class="form-control" id="inputSede" value="P.A.O" readonly>
-                    </div>
-                </div>
-                <div class="form-row">
-                    <div class="form-group col-md-6">
-                        <label for="inputCity">Hora Inicio</label>
-                        <input readonly type="time" name='horario_inicio'  value="{{horario.hora_inicio}}" class="form-control" id="input">
-                    </div>
-                    <div class="form-group col-md-6">
-                        <label for="inputCity">Hora Termino</label>
-                        <input  readonly type="time" class="form-control" name='horario_termino' id="inputCity" value="{{horario.hora_termino}}">
-                    </div>
-                </div>
-    
-                <div class="form-group">
-                    <label for="id_descripcion">Descripcion</label>
-                    <textarea class="form-control" id="id_descripcion" name="descripcion" rows="3"  >{% if form.descripcion.value is not None %}{{form.descripcion.value }}{% endif%}</textarea>
+            <div class="form-row ml-4">
+                <div class="form-group col-md-6">
+                    <label for="inputnombre">Solicitante</label>
+                    <input type="hidden" name="usuario" value="{{user.id}}">
+                    <input readonly type="text" class="form-control" id="di_usuario"
+                        value="{{user.first_name}} {{user.last_name}}">
                     <div class="invalid-feedback">
-                        {{ form.descripcion.errors }}
+                        {{ form.usuario.errors }}
                     </div>
-                
-                    
+
                 </div>
-                
-                
+            </div>
+            <div class="form-row ml-4">
+                <div class="form-group col-md-6">
+                    <label for="inputnombre">Sala</label>
+                    <input type="hidden" name="sala" value="{{sala.id}}">
 
-                <button type="submit" class="btn btn-primary">Solicitar</button>
-                
-                
+                    <input type="text" readonly class="form-control" id="inputnombre" value="{{sala.nombre_sala}}">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="inputSede">Sede</label>
+                    <input type="text" class="form-control" id="inputSede" value="P.A.O" readonly>
+                </div>
+            </div>
+            <div class="form-row ml-4">
+                <div class="form-group col-md-6">
+                    <label for="inputCity">Hora Inicio</label>
+                    <input readonly type="time" name='horario_inicio' value="{{horario.hora_inicio}}"
+                        class="form-control" id="input">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="inputCity">Hora Termino</label>
+                    <input readonly type="time" class="form-control" name='horario_termino' id="inputCity"
+                        value="{{horario.hora_termino}}">
+                </div>
+            </div>
 
-                {% if form.errors %}  
-                    <script type="text/javascript">
-                        {% for field in form %}
-                            var field_input = document.getElementById("{{ field.auto_id }}");
-                            if (field_input) {
-                                field_input.classList.add("is-{% if field.errors %}in{% endif %}valid");
-                                
-                            }
-                        {% endfor %}
-                    </script> 
-                
-                {% endif %}
-            </form> 
+            <div class="form-group ml-4">
+                <label for="id_descripcion">Descripcion</label>
+                <textarea class="form-control col-md-6" id="id_descripcion" name="descripcion"
+                    rows="3">{% if form.descripcion.value is not None %}{{form.descripcion.value }}{% endif%}</textarea>
+                <div class="invalid-feedback">
+                    {{ form.descripcion.errors }}
+                </div>
 
-            {% if messages %}
-                <ul class="alert alert-success" role="alert">
-                    {% for message in messages %}
-                        <h4 class="alert-heading">Listo!</h4>
-                        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-                    {% endfor %}
-                </ul>
-            {% endif %} 
+
+            </div>
+
+<div class="col">
+    <button type="submit" class="btn btn-warning rounded  align-self-center">Solicitar</button>
+</div>
+
+            
+
+
+
+            {% if form.errors %}
+            <script type="text/javascript">
+                {% for field in form %}
+                var field_input = document.getElementById("{{ field.auto_id }}");
+                if (field_input) {
+                    field_input.classList.add("is-{% if field.errors %}in{% endif %}valid");
+
+                }
+                {% endfor %}
+            </script>
+
+            {% endif %}
+        </form>
+    </div>
+
+</div>
+</div>
+
+{% if messages %}
+<ul class="alert alert-success" role="alert">
+    {% for message in messages %}
+    <h4 class="alert-heading">Listo!</h4>
+    <li{% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+        {% endfor %}
+</ul>
+{% endif %}
 
 {% endblock %}
